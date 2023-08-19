@@ -9,6 +9,7 @@ pipeline {
             }
         }
         stage("Build"){
+            
             steps {
                 echo "Building the image"
                 sh "docker build -t two-tier-flask-app:$BUILD_NUMBER ."
