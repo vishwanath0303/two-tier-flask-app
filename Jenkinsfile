@@ -12,9 +12,14 @@ pipeline {
             steps {
                 echo "Building the image"
                 sh "docker build -t two-tier-flask-app:$BUILD_NUMBER ."
-                sh " docker run -d -p 8181:8181 --name two-tier-flask-app two-tier-flask-app:$BUILD_NUMBER "
             }
         }
-          
+        stage("Deploy"){
+            steps {
+                echo "Deploying the container"
+                sh "docker-compose down && docker-compose up -d"
+                
+            }
+        }
      }
  }
